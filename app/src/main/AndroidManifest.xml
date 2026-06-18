@@ -29,7 +29,6 @@
         </provider>
     </application>
 
-    <!-- Permissions -->
+    <!-- No Permissions Required (100% Offline) -->
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
