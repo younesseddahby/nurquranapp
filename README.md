@@ -1,24 +1,39 @@
 # نور قرآن | Nur Quran 📖
 
+<div align="center">
+
 **Offline Quran App — القرآن الكريم دون نت**
 
-[![Android](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://www.android.com/)
-[![Capacitor](https://img.shields.io/badge/Capacitor-Android-119EFF?logo=capacitor&logoColor=white)](https://capacitorjs.com/)
-[![License](https://img.shields.io/badge/License-CC--BY--SA%204.0-blue)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![Android](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white&style=for-the-badge)](https://www.android.com/)
+[![Capacitor](https://img.shields.io/badge/Capacitor-Android-119EFF?logo=capacitor&logoColor=white&style=for-the-badge)](https://capacitorjs.com/)
+[![License](https://img.shields.io/badge/License-CC--BY--SA%204.0-blue?style=for-the-badge)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![GitHub Release](https://img.shields.io/github/v/release/younesseddahby/nurquranapp?display_name=tag&style=for-the-badge)](https://github.com/younesseddahby/nurquranapp/releases)
 
-**Nur Quran** is a simple, fast, and offline Quran reading application. It is designed to make reading the Holy Quran accessible anytime and anywhere, without requiring an internet connection.
+**Read the Quran anywhere. Offline. Simple. Fast.**
 
-**نور قرآن** هو تطبيق بسيط وسريع لقراءة القرآن الكريم في أي وقت وأي مكان، دون الحاجة إلى الاتصال بالإنترنت.
+</div>
 
 ---
 
 ## 📱 Download
 
+<div align="center">
+
 <a href="https://play.google.com/store/apps/details?id=com.eddahby.quran">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" width="200" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" width="210" />
 </a>
 
-**[Download Nur Quran on Google Play](https://play.google.com/store/apps/details?id=com.eddahby.quran)**
+<br><br>
+
+<a href="https://github.com/younesseddahby/nurquranapp/releases/latest">
+  <img src="https://img.shields.io/badge/Download%20APK-GitHub%20Releases-181717?style=for-the-badge&logo=github&logoColor=white" alt="Download APK from GitHub Releases" />
+</a>
+
+</div>
+
+**Nur Quran** is a simple, fast, and offline Quran reading application designed to make reading the Holy Quran accessible anytime and anywhere, without requiring an internet connection.
+
+**نور قرآن** هو تطبيق بسيط وسريع لقراءة القرآن الكريم في أي وقت وأي مكان، دون الحاجة إلى الاتصال بالإنترنت.
 
 ---
 
@@ -31,7 +46,7 @@
 - 🌙 **Dark mode** — A comfortable interface for low-light reading.
 - ⚡ **Fast startup** — Lightweight and responsive navigation.
 - 📱 **Clean interface** — Focused on a simple and comfortable reading experience.
-- 🕌 **Lightweight** — Built to provide a smooth Quran-reading experience without unnecessary complexity.
+- 🕌 **Lightweight** — Built for a smooth Quran-reading experience without unnecessary complexity.
 
 ### 🆕 What's New
 
@@ -47,15 +62,17 @@ Recent improvements include:
 
 ## 🧱 Technology
 
-The Android application is built around a **Capacitor** Android project and integrates the Quran reading experience into a native Android application.
+Nur Quran uses a **Capacitor-based Android project** to package the Quran reading experience as a native Android application.
 
-- **Web layer:** React
-- **Native runtime:** Capacitor
-- **Platform:** Android
-- **Build system:** Gradle
-- **Language in native Android layer:** Java
+| Layer | Technology |
+|---|---|
+| Web layer | React |
+| Native runtime | Capacitor |
+| Platform | Android |
+| Build system | Gradle |
+| Native language | Java |
 
-The repository contains the Android project, including the Gradle wrapper, Android application module, Capacitor configuration, and native Android build configuration.
+The repository contains the Android project, Gradle wrapper, Android application module, Capacitor integration, and native Android build configuration.
 
 ---
 
@@ -63,21 +80,22 @@ The repository contains the Android project, including the Gradle wrapper, Andro
 
 ```text
 nurquranapp/
-├── app/                       # Android application module
-├── gradle/                    # Gradle wrapper configuration
-├── .gitignore
+├── .github/workflows/        # Automated Android release build
+├── app/                      # Android application module
+├── gradle/                   # Gradle wrapper configuration
+├── dist/                     # Web build assets tracked by the project
 ├── build.gradle              # Root Gradle configuration
 ├── capacitor.settings.gradle # Capacitor Android integration
 ├── gradle.properties
-├── gradlew                    # Gradle wrapper (Unix/macOS/Linux)
-├── gradlew.bat                # Gradle wrapper (Windows)
+├── gradlew                   # Gradle wrapper (Linux/macOS)
+├── gradlew.bat               # Gradle wrapper (Windows)
 ├── settings.gradle
 ├── variables.gradle
 ├── LICENSE.txt
 └── README.md
 ```
 
-> The repository is the Android side of the application. Capacitor-generated files should generally be regenerated from the parent web project when the underlying Capacitor configuration changes.
+> This repository contains the Android side of the application. Capacitor-generated files should generally be regenerated from the parent web project when the underlying Capacitor configuration changes.
 
 ---
 
@@ -85,11 +103,9 @@ nurquranapp/
 
 ### Requirements
 
-For Android development, you will typically need:
-
 - [Android Studio](https://developer.android.com/studio)
 - Android SDK configured through Android Studio
-- A compatible JDK
+- JDK 21 for the current build configuration
 - An Android emulator or physical Android device for testing
 - The required Capacitor/web project dependencies when regenerating or synchronizing the Android platform
 
@@ -103,20 +119,20 @@ cd nurquranapp
 ### Open in Android Studio
 
 1. Open the repository in Android Studio.
-2. Allow Gradle to sync the project.
+2. Allow Gradle to sync.
 3. Make sure the required Android SDK is installed.
 4. Connect an Android device or start an emulator.
 5. Select the `app` configuration and run the application.
 
 ### Build a debug APK
 
-On Linux/macOS:
+Linux/macOS:
 
 ```bash
 ./gradlew assembleDebug
 ```
 
-On Windows:
+Windows:
 
 ```powershell
 .\gradlew.bat assembleDebug
@@ -128,15 +144,27 @@ The debug APK is generated under:
 app/build/outputs/apk/debug/
 ```
 
-### Run tests
+### Build a release APK locally
 
-Unit tests:
+```bash
+./gradlew assembleRelease
+```
+
+The release APK is generated under:
+
+```text
+app/build/outputs/apk/release/
+```
+
+> Release builds are generated by Gradle and are intentionally ignored by Git. Do not commit APK/AAB build artifacts to the repository.
+
+### Run tests
 
 ```bash
 ./gradlew test
 ```
 
-Android instrumentation tests:
+For Android instrumentation tests:
 
 ```bash
 ./gradlew connectedAndroidTest
@@ -146,11 +174,74 @@ The instrumentation command requires a connected Android device or running emula
 
 ---
 
+## 🚀 Automated Android Releases
+
+The repository includes a GitHub Actions workflow at `.github/workflows/release-android.yml`.
+
+It automatically builds the Android **release APK** when a GitHub Release is published.
+
+### Release flow
+
+```text
+Create GitHub Release
+        ↓
+GitHub Actions
+        ↓
+Install Capacitor dependencies
+        ↓
+Gradle assembleRelease
+        ↓
+Generate APK
+        ↓
+Upload workflow artifact
+        ↓
+Attach APK to GitHub Release
+```
+
+The APK is named using the release tag, for example:
+
+```text
+nur-quran-v2.2.0.apk
+```
+
+### Manual build from GitHub Actions
+
+You can also run the workflow manually from:
+
+**GitHub → Actions → Android Release → Run workflow**
+
+A manually triggered build is uploaded as a workflow artifact. A published GitHub Release additionally receives the APK in its **Assets** section.
+
+### Creating a release
+
+1. Update the Android version in `app/build.gradle`:
+
+```gradle
+versionCode 23
+versionName "2.3.0"
+```
+
+2. Commit and push the changes.
+3. Create a GitHub tag/release such as `v2.3.0`.
+4. Publish the release.
+5. GitHub Actions builds the APK automatically.
+6. Download the APK from the release **Assets**.
+
+> **Do not upload an APK to Git manually.** GitHub Actions builds it for each release.
+
+### Important: signing
+
+The current workflow builds a release APK but does not configure a private signing key. Before distributing a production APK or publishing to Google Play, configure Android signing securely with GitHub Actions Secrets. **Never commit a keystore or signing password to the repository.**
+
+For Google Play, the recommended production artifact is an **Android App Bundle (`.aab`)** rather than an APK.
+
+---
+
 ## 🔄 Capacitor Workflow
 
 If the Android project is generated or synchronized from a Capacitor web application, make changes to the web application and Capacitor configuration in the parent project first, then synchronize the Android platform.
 
-Typical Capacitor workflow:
+Typical workflow from the parent web project:
 
 ```bash
 npm install
@@ -158,7 +249,7 @@ npx cap sync android
 npx cap open android
 ```
 
-> Run these commands from the parent web project that contains the JavaScript/React application and `node_modules`. They are not intended to be run from this Android-only repository unless the corresponding web project is present there.
+> These commands are intended to be run from the parent web project that contains the JavaScript/React application and `node_modules`. This repository is the Android side and its `capacitor.settings.gradle` resolves Capacitor packages from the parent project's `node_modules`.
 
 Avoid manually modifying generated Capacitor files when the same configuration can be changed in the source web project and regenerated.
 
@@ -191,7 +282,7 @@ Please respect the licenses and attribution requirements of each upstream data s
 
 This project's source code is licensed under the **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)** license, in accordance with the licensing requirements associated with the included `en-json` source.
 
-See the repository's [`LICENSE.txt`](./LICENSE.txt) for the license text.
+See [`LICENSE.txt`](./LICENSE.txt) for the license text.
 
 Full license information: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -223,8 +314,13 @@ If you find the app useful, consider supporting the project by rating it on Goog
 ## 🔗 Links
 
 - 📱 [Nur Quran on Google Play](https://play.google.com/store/apps/details?id=com.eddahby.quran)
+- 📦 [Latest GitHub Release](https://github.com/younesseddahby/nurquranapp/releases/latest)
 - 💻 [Source Code on GitHub](https://github.com/younesseddahby/nurquranapp)
 
 ---
 
+<div align="center">
+
 **Made for the global Muslim community. 🤍**
+
+</div>
