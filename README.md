@@ -1,85 +1,230 @@
-# Nur Quran – Offline Quran App
+# نور قرآن | Nur Quran 📖
 
+**Offline Quran App — القرآن الكريم دون نت**
 
-# نور قرآن - Nur Quran 📖
+[![Android](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://www.android.com/)
+[![Capacitor](https://img.shields.io/badge/Capacitor-Android-119EFF?logo=capacitor&logoColor=white)](https://capacitorjs.com/)
+[![License](https://img.shields.io/badge/License-CC--BY--SA%204.0-blue)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-**Offline Quran App | القرآن الكريم دون نت**
+**Nur Quran** is a simple, fast, and offline Quran reading application. It is designed to make reading the Holy Quran accessible anytime and anywhere, without requiring an internet connection.
 
-Nur Quran is a simple and fast Quran application that allows you to read the Holy Quran anytime and anywhere without an internet connection.
+**نور قرآن** هو تطبيق بسيط وسريع لقراءة القرآن الكريم في أي وقت وأي مكان، دون الحاجة إلى الاتصال بالإنترنت.
 
-نور قرآن هو تطبيق بسيط وسريع لقراءة القرآن الكريم في أي وقت وأي مكان بدون الحاجة إلى الإنترنت.
+---
 
 ## 📱 Download
 
 <a href="https://play.google.com/store/apps/details?id=com.eddahby.quran">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-       alt="Get it on Google Play" 
-       width="200"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" width="200" />
 </a>
 
-[Download Nur Quran on Google Play](https://play.google.com/store/apps/details?id=com.eddahby.quran)
+**[Download Nur Quran on Google Play](https://play.google.com/store/apps/details?id=com.eddahby.quran)**
+
+---
 
 ## ✨ Features | المميزات
 
-- 📖 Read the Quran offline without internet
-- 🔎 Fast search by Surah name, number, or Arabic text
-- ⚡ Fast startup and smooth navigation
-- 🌙 Comfortable dark mode for night reading
-- 📱 Clean and simple reading interface
-- 🔖 Easy access to Surahs and reading progress
-- 🕌 Lightweight app with a smooth experience
+- 📖 **Offline Quran reading** — Read the Quran without an internet connection.
+- 🔎 **Fast search** — Search by Surah name, Surah number, or Arabic text.
+- 📚 **Surah navigation** — Quickly browse and open Surahs.
+- 🔖 **Reading progress** — Easily return to your reading.
+- 🌙 **Dark mode** — A comfortable interface for low-light reading.
+- ⚡ **Fast startup** — Lightweight and responsive navigation.
+- 📱 **Clean interface** — Focused on a simple and comfortable reading experience.
+- 🕌 **Lightweight** — Built to provide a smooth Quran-reading experience without unnecessary complexity.
 
-## 🆕 What's New
+### 🆕 What's New
 
-- Improved search: Find Surahs and verses faster by name, number, or text.
-- Better performance: Faster startup and smoother navigation between Surahs.
-- Enhanced reading interface: A cleaner and more comfortable Quran reading experience.
-- Improved dark mode: Better contrast for comfortable night reading.
-- General improvements and fixes for better accuracy and stability.
+Recent improvements include:
 
-## 🛠️ Built With
-
-- React
-- Capacitor
-- Android
-
-## 📄 About
-
-Nur Quran was created to provide a simple, fast, and offline Quran reading experience.
-
-نور قرآن تم تطويره لتوفير تجربة قراءة سهلة وسريعة للقرآن الكريم بدون إنترنت.
+- Faster and more accurate search for Surahs and verses.
+- Faster startup and smoother navigation.
+- A cleaner and more comfortable reading interface.
+- Improved dark-mode contrast for night reading.
+- General stability, performance, and accuracy improvements.
 
 ---
 
-⭐ If you like the app, consider rating it on Google Play.
+## 🧱 Technology
+
+The Android application is built around a **Capacitor** Android project and integrates the Quran reading experience into a native Android application.
+
+- **Web layer:** React
+- **Native runtime:** Capacitor
+- **Platform:** Android
+- **Build system:** Gradle
+- **Language in native Android layer:** Java
+
+The repository contains the Android project, including the Gradle wrapper, Android application module, Capacitor configuration, and native Android build configuration.
+
 ---
 
-## 📖 Data Sources & Attribution
+## 📂 Project Structure
 
-### English Translation (en-json)
+```text
+nurquranapp/
+├── app/                       # Android application module
+├── gradle/                    # Gradle wrapper configuration
+├── .gitignore
+├── build.gradle              # Root Gradle configuration
+├── capacitor.settings.gradle # Capacitor Android integration
+├── gradle.properties
+├── gradlew                    # Gradle wrapper (Unix/macOS/Linux)
+├── gradlew.bat                # Gradle wrapper (Windows)
+├── settings.gradle
+├── variables.gradle
+├── LICENSE.txt
+└── README.md
+```
+
+> The repository is the Android side of the application. Capacitor-generated files should generally be regenerated from the parent web project when the underlying Capacitor configuration changes.
+
+---
+
+## 🛠️ Development
+
+### Requirements
+
+For Android development, you will typically need:
+
+- [Android Studio](https://developer.android.com/studio)
+- Android SDK configured through Android Studio
+- A compatible JDK
+- An Android emulator or physical Android device for testing
+- The required Capacitor/web project dependencies when regenerating or synchronizing the Android platform
+
+### Clone
+
+```bash
+git clone https://github.com/younesseddahby/nurquranapp.git
+cd nurquranapp
+```
+
+### Open in Android Studio
+
+1. Open the repository in Android Studio.
+2. Allow Gradle to sync the project.
+3. Make sure the required Android SDK is installed.
+4. Connect an Android device or start an emulator.
+5. Select the `app` configuration and run the application.
+
+### Build a debug APK
+
+On Linux/macOS:
+
+```bash
+./gradlew assembleDebug
+```
+
+On Windows:
+
+```powershell
+.\gradlew.bat assembleDebug
+```
+
+The debug APK is generated under:
+
+```text
+app/build/outputs/apk/debug/
+```
+
+### Run tests
+
+Unit tests:
+
+```bash
+./gradlew test
+```
+
+Android instrumentation tests:
+
+```bash
+./gradlew connectedAndroidTest
+```
+
+The instrumentation command requires a connected Android device or running emulator.
+
+---
+
+## 🔄 Capacitor Workflow
+
+If the Android project is generated or synchronized from a Capacitor web application, make changes to the web application and Capacitor configuration in the parent project first, then synchronize the Android platform.
+
+Typical Capacitor workflow:
+
+```bash
+npm install
+npx cap sync android
+npx cap open android
+```
+
+> Run these commands from the parent web project that contains the JavaScript/React application and `node_modules`. They are not intended to be run from this Android-only repository unless the corresponding web project is present there.
+
+Avoid manually modifying generated Capacitor files when the same configuration can be changed in the source web project and regenerated.
+
+---
+
+## 📖 Quran Data Sources & Attribution
+
+The Quran content and supporting data used by Nur Quran come from the following sources. Their attribution is intentionally preserved here.
+
+### English Translation — `en-json`
+
 - **Source:** [risan/quran-json](https://github.com/risan/quran-json)
-- **License:** [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+- **License:** [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-### Warsh & Hafs Arabic Text (warsh-json / hafs-json)
+### Warsh & Hafs Arabic Text — `warsh-json` / `hafs-json`
+
 - **Source:** [thetruetruth/quran-data-kfgqpc](https://github.com/thetruetruth/quran-data-kfgqpc)
 - **Origin:** King Fahd Glorious Quran Printing Complex (KFGQPC)
-- **Permission:** Used with explicit permission from KFGQPC ("You may use this data by downloading from Github")
+- **Permission:** Used with explicit permission from KFGQPC ("You may use this data by downloading from Github").
 
-### Tafsir (tafsir-json)
+### Tafsir — `tafsir-json`
+
 - **Source:** [GlobalQuran.com](https://docs.globalquran.com/data)
+
+Please respect the licenses and attribution requirements of each upstream data source when redistributing or modifying the application.
+
+---
 
 ## 📄 License
 
-This app's source code is licensed under **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)** to comply with the `en-json` source.
+This project's source code is licensed under the **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)** license, in accordance with the licensing requirements associated with the included `en-json` source.
 
-Full license text: [https://creativecommons.org/licenses/by-sa/4.0/](https://creativecommons.org/licenses/by-sa/4.0/)
+See the repository's [`LICENSE.txt`](./LICENSE.txt) for the license text.
 
-## 🙏 Acknowledgements
+Full license information: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-- King Fahd Glorious Quran Printing Complex for Quranic text
-- Risan Bagja Pradana for the `quran-json` project
-- GlobalQuran.com for Tafsir data
+> **Important:** The application source code and Quran/translation/tafsir datasets may have different upstream attribution or usage requirements. Always check the individual source licenses listed above.
 
 ---
 
-**Made for the global Muslim community.**
+## 🙏 Acknowledgements
+
+Special thanks to:
+
+- **King Fahd Glorious Quran Printing Complex (KFGQPC)** — Quranic text.
+- **Risan Bagja Pradana** — `quran-json` project and English translation data.
+- **GlobalQuran.com** — Tafsir data.
+- The wider open-source community whose tools and projects make this application possible.
+
+---
+
+## 🎯 About Nur Quran
+
+Nur Quran was created with a simple goal: **make reading the Quran easy, fast, and available offline.**
+
+نور قرآن تم تطويره بهدف بسيط: **توفير تجربة سهلة وسريعة ومريحة لقراءة القرآن الكريم دون الحاجة إلى الإنترنت.**
+
+If you find the app useful, consider supporting the project by rating it on Google Play or sharing it with others.
+
+---
+
+## 🔗 Links
+
+- 📱 [Nur Quran on Google Play](https://play.google.com/store/apps/details?id=com.eddahby.quran)
+- 💻 [Source Code on GitHub](https://github.com/younesseddahby/nurquranapp)
+
+---
+
+**Made for the global Muslim community. 🤍**
