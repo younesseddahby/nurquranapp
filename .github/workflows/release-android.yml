@@ -9,12 +9,17 @@ permissions:
   contents: write
 
 concurrency:
-  group: android-release-${{ github.event.release.tag_name || github.ref }}
+  group: android-release-${{ github.event.release.tag_name || github.ref_name }}
   cancel-in-progress: false
+
+env:
+  NODE_VERSION: '22'
+  JAVA_VERSION: '21'
+  CAPACITOR_VERSION: '8'
 
 jobs:
   build-release:
-    name: Build Android APK
+    name: Build Nur Quran APK
     runs-on: ubuntu-latest
 
     steps:
@@ -24,20 +29,26 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Sync Capacitor Android project
-        run: npx cap sync android
+      # This repository is the generated Android side of the Capacitor app.
+      # capacitor.settings.gradle intentionally resolves Capacitor packages
+      # from ../node_modules, so install the required Capacitor packages there.
+      - name: Prepare Capacitor dependencies
+        working-directory: ..
+        run: |
+          npm init -y
+          npm install --no-save \
+            @capacitor/android@${CAPACITOR_VERSION} \
+            @capacitor/app@${CAPACITOR_VERSION} \
+            @capacitor/status-bar@${CAPACITOR_VERSION} \
+            @capacitor/toast@${CAPACITOR_VERSION}
 
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: ${{ env.JAVA_VERSION }}
           cache: gradle
 
       - name: Setup Android SDK
@@ -47,19 +58,23 @@ jobs:
         run: yes | sdkmanager --licenses > /dev/null || true
 
       - name: Build release APK
-        working-directory: android
         run: ./gradlew assembleRelease --stacktrace
 
-      - name: Rename APK
+      - name: Locate and rename APK
         run: |
+          set -euo pipefail
           mkdir -p release-assets
-          APK=$(find android/app/build/outputs/apk/release -type f -name '*.apk' | head -n 1)
+          APK=$(find app/build/outputs/apk/release -type f -name '*.apk' | head -n 1)
+
           if [ -z "$APK" ]; then
             echo "No release APK was found."
+            find app/build/outputs -maxdepth 5 -type f 2>/dev/null || true
             exit 1
           fi
+
           TAG="${{ github.event.release.tag_name || github.ref_name }}"
           cp "$APK" "release-assets/nur-quran-${TAG}.apk"
+          ls -lh release-assets/
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
