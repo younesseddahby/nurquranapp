@@ -1,5 +1,0 @@
-<AppFunctionAppMetadata xmlns:appfn="http://schemas.android.com/apk/androidx.appfunctions"
-    appfn:description="The Nur-Quran app allows users to read and search the Quran in Hafs and Warsh recitations.
-    Operational Patterns:
-    - Use 'openSurah' to open a specific surah by number.
-    - Use 'searchAyah' to find ayahs containing a specific keyword or phrase." />

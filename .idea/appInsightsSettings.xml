@@ -14,7 +14,7 @@
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
               <option name="timeIntervalDays" value="SIXTY_DAYS" />
-              <option name="visibilityType" value="USER_PERCEIVED" />
+              <option name="visibilityType" value="ALL" />
             </InsightsFilterSettings>
           </value>
         </entry>
@@ -28,12 +28,6 @@
                   <option name="projectId" value="" />
                   <option name="projectNumber" value="" />
                 </ConnectionSetting>
-              </option>
-              <option name="failureTypes">
-                <list>
-                  <option value="ANR" />
-                  <option value="NON_FATAL" />
-                </list>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
               <option name="timeIntervalDays" value="THIRTY_DAYS" />
