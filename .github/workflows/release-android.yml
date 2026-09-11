@@ -45,7 +45,7 @@ jobs:
           cat > capacitor-cordova-android-plugins/cordova.variables.gradle <<'EOF'
           // Generated for the native Android project during CI.
           ext {
-            cdvMinSdkVersion = project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 22
+            cdvMinSdkVersion = project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 24
             cdvPluginPostBuildExtras = []
             cordovaConfig = [:]
           }
