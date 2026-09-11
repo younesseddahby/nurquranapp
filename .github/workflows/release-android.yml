@@ -35,7 +35,22 @@ jobs:
         working-directory: ..
         run: |
           npm init -y
-          npm install --no-save @capacitor/android@${CAPACITOR_VERSION} @capacitor/app@${CAPACITOR_VERSION} @capacitor/share@${CAPACITOR_VERSION} @capacitor/status-bar@${CAPACITOR_VERSION} @capacitor/toast@${CAPACITOR_VERSION}
+          npm install --no-save @capacitor/cli@${CAPACITOR_VERSION} @capacitor/android@${CAPACITOR_VERSION} @capacitor/app@${CAPACITOR_VERSION} @capacitor/share@${CAPACITOR_VERSION} @capacitor/status-bar@${CAPACITOR_VERSION} @capacitor/toast@${CAPACITOR_VERSION}
+
+      - name: Prepare generated Capacitor Android project
+        run: |
+          set -euo pipefail
+          mkdir -p capacitor-cordova-android-plugins
+          tar -xzf ../node_modules/@capacitor/cli/assets/capacitor-cordova-android-plugins.tar.gz -C capacitor-cordova-android-plugins
+          cat > capacitor-cordova-android-plugins/cordova.variables.gradle <<'EOF'
+          // Generated for the native Android project during CI.
+          ext {
+            cdvMinSdkVersion = project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 22
+            cdvPluginPostBuildExtras = []
+            cordovaConfig = [:]
+          }
+          EOF
+          sed -i '/^for (def func : cdvPluginPostBuildExtras)/i apply from: "cordova.variables.gradle"' capacitor-cordova-android-plugins/build.gradle
 
       - name: Setup Java
         uses: actions/setup-java@v4
