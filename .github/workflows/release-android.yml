@@ -1,15 +1,15 @@
 name: Android Release
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: android-release-${{ github.event.release.tag_name || github.ref_name }}
+  group: android-release-${{ github.ref_name }}
   cancel-in-progress: false
 
 env:
@@ -74,20 +74,25 @@ jobs:
           mkdir -p release-assets
           APK=$(find app/build/outputs/apk/release -type f -name '*.apk' | head -n 1)
           test -n "$APK"
-          TAG="${{ github.event.release.tag_name || github.ref_name }}"
+          TAG="build-${GITHUB_RUN_NUMBER}-${GITHUB_SHA::7}"
           cp "$APK" "release-assets/nur-quran-${TAG}.apk"
           ls -lh release-assets/
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nur-quran-android-${{ github.event.release.tag_name || github.ref_name }}
+          name: nur-quran-android-build-${{ github.run_number }}-${{ github.sha }}
           path: release-assets/*.apk
           if-no-files-found: error
           retention-days: 30
 
-      - name: Attach APK to GitHub Release
-        if: github.event_name == 'release'
+      - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ github.event.release.tag_name }}" release-assets/*.apk --clobber
+        run: |
+          set -euo pipefail
+          TAG="build-${GITHUB_RUN_NUMBER}-${GITHUB_SHA::7}"
+          gh release create "$TAG" release-assets/*.apk \
+            --target "$GITHUB_SHA" \
+            --title "Nur Quran $TAG" \
+            --generate-notes
