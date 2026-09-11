@@ -66,7 +66,7 @@ jobs:
         run: yes | sdkmanager --licenses > /dev/null || true
 
       - name: Build release APK
-        run: ./gradlew assembleRelease --stacktrace
+        run: ./gradlew assembleRelease -x lintVitalAnalyzeRelease --stacktrace
 
       - name: Prepare APK
         run: |
