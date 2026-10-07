@@ -15,8 +15,15 @@ import com.google.android.gms.tasks.Task;
 @CapacitorPlugin(name = "RateApp")
 public class RateAppPlugin extends Plugin {
 
+    private static final String TAG = "RateAppPlugin";
+
     @PluginMethod
     public void requestReview(PluginCall call) {
+        if (getActivity() == null) {
+            call.reject("Activity not available");
+            return;
+        }
+
         getActivity().runOnUiThread(() -> {
             try {
                 ReviewManager manager = ReviewManagerFactory.create(getActivity());
@@ -42,6 +49,11 @@ public class RateAppPlugin extends Plugin {
 
     @PluginMethod
     public void openStore(PluginCall call) {
+        if (getActivity() == null) {
+            call.reject("Activity not available");
+            return;
+        }
+
         getActivity().runOnUiThread(() -> {
             try {
                 openStoreInternal();
@@ -53,6 +65,7 @@ public class RateAppPlugin extends Plugin {
     }
 
     private void openStoreInternal() {
+        if (getActivity() == null) return;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.eddahby.quran"));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getActivity().startActivity(intent);
@@ -61,23 +74,31 @@ public class RateAppPlugin extends Plugin {
     @PluginMethod
     public void shareAyah(PluginCall call) {
         String text = call.getString("text");
-        if (text == null) {
+        String title = call.getString("title", "مشاركة الآية");
+        Log.d(TAG, "shareAyah called. Text: " + text);
+
+        if (text == null || text.trim().isEmpty()) {
             call.reject("Text is required");
             return;
         }
-        
+
+        if (getActivity() == null) {
+            call.reject("Activity not available");
+            return;
+        }
+
         getActivity().runOnUiThread(() -> {
             try {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, text);
-                
-                Intent chooser = Intent.createChooser(intent, "Share Ayah");
-                // When starting from Activity, we don't strictly need NEW_TASK but it doesn't hurt
-                getActivity().startActivity(chooser);
+                Intent sendIntent = new Intent(Intent.ACTION_SEND);
+                sendIntent.setType("text/plain");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT, title);
+
+                Intent shareIntent = Intent.createChooser(sendIntent, title);
+                getActivity().startActivity(shareIntent);
                 call.resolve();
             } catch (Exception e) {
-                Log.e("RateApp", "Share failed", e);
+                Log.e(TAG, "Share failed", e);
                 call.reject("Could not open Share Sheet: " + e.getMessage());
             }
         });
